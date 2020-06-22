@@ -130,6 +130,14 @@ struct StmtIterator : public StmtIteratorImpl<StmtIterator, Stmt*&> {
   StmtIterator(const VariableArrayType *t)
       : StmtIteratorImpl<StmtIterator, Stmt*&>(t) {}
 
+  bool operator==(const StmtIterator& RHS) const {
+    return StmtIteratorImpl::operator==(RHS);
+  }
+
+  bool operator!=(const StmtIterator& RHS) const {
+    return StmtIteratorImpl::operator!=(RHS);
+  }
+
 private:
   StmtIterator(const StmtIteratorBase &RHS)
       : StmtIteratorImpl<StmtIterator, Stmt *&>(RHS) {}
