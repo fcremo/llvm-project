@@ -127,6 +127,9 @@ public:
   X86AsmBackend(const Target &T, const MCSubtargetInfo &STI)
       : MCAsmBackend(support::little), STI(STI),
         MCII(T.createMCInstrInfo()) {
+
+    AlignBoundary = assumeAligned(0);
+    /*
     if (X86AlignBranchWithin32BBoundaries) {
       // At the moment, this defaults to aligning fused branches, unconditional
       // jumps, and (unfused) conditional jumps with nops.  Both the
@@ -137,6 +140,7 @@ public:
       AlignBranchType.addKind(X86::AlignBranchJcc);
       AlignBranchType.addKind(X86::AlignBranchJmp);
     }
+    */
     // Allow overriding defaults set by master flag
     if (X86AlignBranchBoundary.getNumOccurrences())
       AlignBoundary = assumeAligned(X86AlignBranchBoundary);

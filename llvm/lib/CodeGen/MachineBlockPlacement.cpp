@@ -3129,7 +3129,12 @@ bool MachineBlockPlacement::runOnMachineFunction(MachineFunction &MF) {
   ComputedEdges.clear();
   ChainAllocator.DestroyAll();
 
-  if (AlignAllBlock)
+  if (AlignAllBlock == 100) {
+    // Align all of the blocks in the function to a specific alignment.
+    for (MachineBasicBlock &MBB : MF)
+      MBB.setAlignment(Align(1));
+  }
+  else if (AlignAllBlock)
     // Align all of the blocks in the function to a specific alignment.
     for (MachineBasicBlock &MBB : MF)
       MBB.setAlignment(Align(1ULL << AlignAllBlock));
