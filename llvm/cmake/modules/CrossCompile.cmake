@@ -75,6 +75,7 @@ function(llvm_create_cross_target project_name target_name toolchain buildtype)
         ${CROSS_TOOLCHAIN_FLAGS_${target_name}} ${CMAKE_SOURCE_DIR}
         ${CROSS_TOOLCHAIN_FLAGS_${project_name}_${target_name}}
         -DLLVM_TARGET_IS_CROSSCOMPILE_HOST=TRUE
+        -DCMAKE_CROSSCOMPILING=False
         -DLLVM_TARGETS_TO_BUILD="${targets_to_build_arg}"
         -DLLVM_EXPERIMENTAL_TARGETS_TO_BUILD="${experimental_targets_to_build_arg}"
         -DLLVM_DEFAULT_TARGET_TRIPLE="${TARGET_TRIPLE}"
